@@ -144,7 +144,7 @@ Follow standard OpenFOAM compilation instructions, with a few CFDEM-specific set
 
   ```bash
   export WM_NCOMPPROCS=<NofProcs>
-  source $HOME/OpenFOAM/OpenFOAM-<OF-Release>/etc/bashrc
+  source $HOME/OpenFOAM/OpenFOAM-5.x/etc/bashrc
   ```
 
 - Then:
