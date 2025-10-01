@@ -80,13 +80,20 @@ Example commands (assumes `$HOME`):
 cd $HOME
 mkdir CFDEM
 cd CFDEM
-git clone git://github.com/CFDEMproject/CFDEMcoupling-PUBLIC.git
+git clone git://github.com/HSU-PFS-Lab/CFDEMcoupling-PUBLIC.git
 
 cd $HOME
 mkdir LIGGGHTS
 cd LIGGGHTS
-git clone git://github.com//HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
+git clone git://github.com/HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
 git clone git://github.com/HSU-PFS-Lab/LPP.git lpp
+
+
+cd $HOME
+mkdir OpenFOAM
+cd OpenFOAM
+git clone git://github.com/HSU-PFS-Lab/OpenFOAM/OpenFOAM-5.x
+git clone git://github.com/HSU-PFS-Lab/OpenFOAM/ThirdParty-5.x
 ```
 
 If you do not have git, you may download ZIP archives from GitHub and unzip them.  
@@ -101,41 +108,6 @@ mv LIGGGHTS-PUBLIC-master LIGGGHTS-PUBLIC
 mv LPP-master lpp
 ```
 
----
-
-#### Download the Correct OpenFOAM® Version
-
-“OpenFOAM®” here refers to the version compatible with your CFDEMcoupling checkout.  
-You can find the required version in `src/lagrangian/cfdemParticle/cfdTools/versionInfo.H`, or from the CFDEMproject GitHub.  
-
-The version string appears as:
-
-```
-word OFversion="<OF-Release>-commit-<commitHashtag>";
-```
-
-For example:
-
-```text
-OFversion="6-commit-af7d7f427be78e9b9beb6aceca8fe7d5d4636876"
-```
-
-To clone the correct OpenFOAM version:
-
-```bash
-cd $HOME
-mkdir OpenFOAM
-cd OpenFOAM
-git clone git://github.com/OpenFOAM/OpenFOAM-<OF-Release>.git
-git clone git://github.com/OpenFOAM/ThirdParty-<OF-Release>.git
-cd OpenFOAM-<OF-Release>
-git checkout <commitHashtag>
-```
-
-Alternatively, download the correct snapshot via GitHub’s download tool.  
-Other (unsupported) versions may work, but are not guaranteed.
-
----
 
 #### Setup Prerequisites
 
