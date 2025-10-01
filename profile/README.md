@@ -59,8 +59,8 @@ git clone git://github.com/CFDEMproject/CFDEMcoupling-PUBLIC.git
 cd $HOME
 mkdir LIGGGHTS
 cd LIGGGHTS
-git clone git://github.com/CFDEMproject/LIGGGHTS-PUBLIC.git
-git clone git://github.com/CFDEMproject/LPP.git lpp
+git clone git://github.com//HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
+git clone git://github.com/HSU-PFS-Lab/LPP.git lpp
 ```
 
 If you do not have git, you may download ZIP archives from GitHub and unzip them.  
