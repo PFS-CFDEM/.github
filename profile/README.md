@@ -11,7 +11,7 @@ Below is the **Installation** section as per the CFDEMcoupling 3.8.1 manual with
 This section describes how to download the CFDEM®project repositories and compile LIGGGHTS® and CFDEM®coupling.  
 
 ### Procedure (Short Summary)
-1. Install and load the required packages on HSUper (gcc@4.9.1,openmpi@3.1.6,flex)
+1. Install and load required modules on HSUper (gcc@4.9.1, openmpi@3.1.6, flex)
 2. Install git  
 3. Download CFDEM®project software  
 4. Download the correct OpenFOAM® version  
@@ -24,11 +24,37 @@ This section describes how to download the CFDEM®project repositories and compi
 
 ---
 
-### Detailed Steps
+### Detailed Installation Guide
+
+#### Prerequisites: Install Required Modules
+
+The following module versions have been verified to work with CFDEM®. Note that newer versions of GCC and OpenMPI may cause compatibility issues.
+
+```bash
+# Load Spack module manager
+module load USER-SPACK/0.22.1
+
+# Install required packages
+spack install openmpi@3.1.6 %gcc@8.5.0
+spack install gcc@4.9.1 %gcc@8.5.0
+```
+
+Load Required Modules:
+
+```bash
+​module load flex
+module load USER-SPACK/0.22.1
+spack load openmpi@3.1.6
+spack load gcc@4.9.1
+```
+
+> **Compatibility Note:** The specified versions (gcc@4.9.1, openmpi@3.1.6) have been thoroughly tested and confirmed to work with CFDEM®. Other version combinations may result in compilation errors.
+
+---
 
 #### Install git
 
-Git is preinstalled on HSUper. However, for completness this step is  kept here. Git allows you to update the source easily via `git pull`.  
+Git is preinstalled on HSUper. However, for completeness, this step is  kept here. Git allows you to update the source easily via `git pull`.  
 On Debian-based systems:
 
 ```bash
