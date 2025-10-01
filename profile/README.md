@@ -1,8 +1,8 @@
 # HSU-PFS-Lab / CFDEMcoupling Setup
 
-This repository (or organization) hosts projects related to CFDEM®coupling, a coupled CFD-DEM framework combining OpenFOAM® and LIGGGHTS®.  
+This repository hosts projects related to CFDEM®coupling, a coupled CFD-DEM framework combining OpenFOAM® and LIGGGHTS®.  
 
-Below is the **Installation** section as per the CFDEMcoupling 3.8.1 manual (adapted).  
+Below is the **Installation** section as per the CFDEMcoupling 3.8.1 manual with the initial part specific for the HSUper of the Helmut-Schmidt University Hamburg. 
 
 ---
 
@@ -11,16 +11,16 @@ Below is the **Installation** section as per the CFDEMcoupling 3.8.1 manual (ada
 This section describes how to download the CFDEM®project repositories and compile LIGGGHTS® and CFDEM®coupling.  
 
 ### Procedure (Short Summary)
-
-1. Install git  
-2. Download CFDEM®project software  
-3. Download the correct OpenFOAM® version  
-4. Setup prerequisites  
-5. Setup and compile OpenFOAM®  
-6. Set environment variables and paths  
-7. Compile LIGGGHTS® and CFDEM®coupling  
-8. Additional information  
-9. Run your own cases  
+1. Install and load the required packages on HSUper (gcc@4.9.1,openmpi@3.1.6,flex)
+2. Install git  
+3. Download CFDEM®project software  
+4. Download the correct OpenFOAM® version  
+5. Setup prerequisites  
+6. Setup and compile OpenFOAM®  
+7. Set environment variables and paths  
+8. Compile LIGGGHTS® and CFDEM®coupling  
+9. Additional information  
+10. Run your own cases  
 
 ---
 
@@ -28,7 +28,7 @@ This section describes how to download the CFDEM®project repositories and compi
 
 #### Install git
 
-This step is optional, but recommended. Git allows you to update the source easily via `git pull`.  
+Git is preinstalled on HSUper. However, for completness this step is  kept here. Git allows you to update the source easily via `git pull`.  
 On Debian-based systems:
 
 ```bash
