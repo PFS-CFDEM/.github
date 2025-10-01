@@ -14,13 +14,12 @@ This section describes how to download the CFDEM®project repositories and compi
 1. Install and load required modules on HSUper (gcc@4.9.1, openmpi@3.1.6, flex)
 2. Install git  
 3. Download CFDEM®project software  
-4. Download the correct OpenFOAM® version  
-5. Setup prerequisites  
-6. Setup and compile OpenFOAM®  
-7. Set environment variables and paths  
-8. Compile LIGGGHTS® and CFDEM®coupling  
-9. Additional information  
-10. Run your own cases  
+4. Setup prerequisites  
+5. Setup and compile OpenFOAM®  
+6. Set environment variables and paths  
+7. Compile LIGGGHTS® and CFDEM®coupling  
+8. Additional information  
+9. Run your own cases  
 
 ---
 
