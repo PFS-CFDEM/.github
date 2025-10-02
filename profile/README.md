@@ -79,20 +79,20 @@ Example commands (assumes `$HOME`):
 cd $HOME
 mkdir CFDEM
 cd CFDEM
-git clone https://github.com/HSU-PFS-Lab/CFDEMcoupling-PUBLIC.git
+git clone git@github.com:HSU-PFS-Lab/CFDEMcoupling-PUBLIC.git
 
 cd $HOME
 mkdir LIGGGHTS
 cd LIGGGHTS
-git clone https://github.com/HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
-git clone https://github.com/HSU-PFS-Lab/LPP.git lpp
+git clone git@github.com:HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
+git clone git@github.com:HSU-PFS-Lab/LPP.git lpp
 
 
 cd $HOME
 mkdir OpenFOAM
 cd OpenFOAM
-git clone https://github.com/HSU-PFS-Lab/OpenFOAM/OpenFOAM-5.x
-git clone https://github.com/HSU-PFS-Lab/OpenFOAM/ThirdParty-5.x
+git clone git@github.com:HSU-PFS-Lab/OpenFOAM/OpenFOAM-5.x
+git clone git@github.com:HSU-PFS-Lab/OpenFOAM/ThirdParty-5.x
 ```
 
 If you do not have git, you may download ZIP archives from GitHub and unzip them.  
