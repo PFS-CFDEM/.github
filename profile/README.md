@@ -42,7 +42,7 @@ Load Required Modules:
 
 ```bash
 ​module load flex
-module load USER-SPACK/0.22.1
+module load USER-SPACK/0.18.1
 spack load openmpi@3.1.6
 spack load gcc@4.9.1
 ```
@@ -91,8 +91,7 @@ git clone git@github.com:HSU-PFS-Lab/LPP.git lpp
 cd $HOME
 mkdir OpenFOAM
 cd OpenFOAM
-git clone git@github.com:HSU-PFS-Lab/OpenFOAM/OpenFOAM-5.x
-git clone git@github.com:HSU-PFS-Lab/OpenFOAM/ThirdParty-5.x
+git clone git@github.com:HSU-PFS-Lab/OpenFOAM.git
 ```
 
 If you do not have git, you may download ZIP archives from GitHub and unzip them.  
