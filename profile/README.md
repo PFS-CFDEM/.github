@@ -142,7 +142,7 @@ Follow standard OpenFOAM compilation instructions, with a few CFDEM-specific set
 - In your `~/.bashrc`, add:
 
   ```bash
-  export WM_NCOMPPROCS=<NofProcs>
+  export WM_NCOMPPROCS=12 # you can chose a smaller number if you compiling on a smaller system
   source $HOME/OpenFOAM/OpenFOAM-5.x/etc/bashrc
   ```
 
