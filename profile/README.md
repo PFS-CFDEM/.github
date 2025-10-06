@@ -89,8 +89,6 @@ git clone git@github.com:HSU-PFS-Lab/LPP.git lpp
 
 
 cd $HOME
-mkdir OpenFOAM
-cd OpenFOAM
 git clone git@github.com:HSU-PFS-Lab/OpenFOAM.git
 ```
 
@@ -151,7 +149,6 @@ Follow standard OpenFOAM compilation instructions, with a few CFDEM-specific set
   ```bash
   source ~/.bashrc
   cd $WM_PROJECT_DIR
-  foamSystemCheck
   ./Allwmake
   ```
 
