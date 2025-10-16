@@ -79,7 +79,7 @@ Example commands (assumes `$HOME`):
 cd $HOME
 mkdir CFDEM
 cd CFDEM
-git clone git@github.com:HSU-PFS-Lab/CFDEMcoupling-PUBLIC.git
+git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC.git
 
 cd $HOME
 mkdir LIGGGHTS
