@@ -84,12 +84,12 @@ git clone git@github.com:HSU-PFS-Lab/CFDEMcoupling-PUBLIC.git
 cd $HOME
 mkdir LIGGGHTS
 cd LIGGGHTS
-git clone git@github.com:HSU-PFS-Lab/LIGGGHTS-PUBLIC.git
-git clone git@github.com:HSU-PFS-Lab/LPP.git lpp
+git clone git@github.com:PFS-CFDEM/LIGGGHTS-PUBLIC.git
+git clone git@github.com:PFS-CFDEM/LPP.git lpp
 
 
 cd $HOME
-git clone git@github.com:HSU-PFS-Lab/OpenFOAM.git
+git clone git@github.com:PFS-CFDEM/OpenFOAM.git
 ```
 
 If you do not have git, you may download ZIP archives from GitHub and unzip them.  
