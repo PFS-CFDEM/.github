@@ -55,7 +55,7 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > ./contrib/download_prerequisites
 >
 > ## configure
-> ./configure --disable-multilib --prefix=$HOME/CFDEM-PFS/gcc/opt/8.5.0 --enable-languages=c,c++,fortran
+> ./configure --disable-multilib --prefix=$HOME/CFDEM-PFS/opt/gcc/8.5.0 --enable-languages=c,c++,fortran
 >
 > ## make & install
 > make -j 12
@@ -63,8 +63,8 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > 
 > After installation, update your environment to compile openmpi with this gcc version
 > 
-> export PATH="$HOME/CFDEM-PFS/gcc/opt/bin:$PATH"
-> export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/gcc/opt/lib64:$LD_LIBRARY_PATH"
+> export PATH="$HOME/CFDEM-PFS/opt/gcc/4.9.0/bin:$PATH"
+> export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/opt/gcc/4.9.0/lib64:$LD_LIBRARY_PATH"
 >```
 
 ### OpenMPI 3.1.6
@@ -81,7 +81,7 @@ wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.bz2
 tar xvjf openmpi-3.1.6.tar.bz2
 cd openmpi-3.1.6
 
-./configure --prefix="$HOME/CFDEM-PFS/openmpi/opt/3.1.6"
+./configure --prefix="$HOME/CFDEM-PFS/opt/openmpi/3.1.6"
 make -j 12 all install
 ```
 
@@ -132,12 +132,12 @@ export CFDEM_ROOT="$(cd "$(dirname "$_SELF")" && pwd)"
 export LOCDIR="$(basename "$CFDEM_ROOT")"     # optional, if you still want the name
 
 # --- MPI used to build/run CFDEM ---
-export PATH="$CFDEM_ROOT/openmpi/opt/3.1.6/bin:$PATH"
-export LD_LIBRARY_PATH="$CFDEM_ROOT/openmpi/opt/3.1.6/lib:$LD_LIBRARY_PATH"
+export PATH="$CFDEM_ROOT/opt/openmpi/3.1.6/bin:$PATH"
+export LD_LIBRARY_PATH="$CFDEM_ROOT/opt/openmpi/3.1.6/lib:$LD_LIBRARY_PATH"
 
 # --- if GCC 8.5.0 was manually compiled ---
-#export PATH="$CFDEM_ROOT/gcc/opt/4.9.0/bin:$PATH"
-#export LD_LIBRARY_PATH="$CFDEM_ROOT/gcc/opt/4.9.0/lib64:$LD_LIBRARY_PATH"
+#export PATH="$CFDEM_ROOT/opt/gcc/4.9.0/bin:$PATH"
+#export LD_LIBRARY_PATH="$CFDEM_ROOT/opt/gcc/4.9.0/lib64:$LD_LIBRARY_PATH"
 
 # --- OpenFOAM settings ---
 export WM_NCOMPPROCS=12
