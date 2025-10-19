@@ -142,10 +142,16 @@ alias cfdemenv='source $HOME/CFDEM-PFS/cfdem.env'
 
 ```bash
 source "$HOME/CFDEM-PFS/cfdem.env"
+
+cd $WM_PROJECT_DIR
+./Allwmake
+
+cd CFDEM_PROJECT_DIR
 cfdemCompCFDEMall
 ```
 
 This compiles:
+- OpenFOAM 6
 - LIGGGHTS® executable & shared library  
 - CFDEM® coupling libraries  
 - CFDEM® solvers & utilities
