@@ -236,35 +236,19 @@ cfdemLiggghtsPar inputScriptName nProcs
 
 ---
 
-## 🧭 7. SLURM job script example
+## 🧭 7. SLURM job script
 
+
+
+DO not forget to source the cfdem environment file in your SLURM job submission file:
 ```bash
-nano cfdem_job.slurm
-```
 
-Paste:
-```bash
-#!/bin/bash
-#SBATCH -J cfdem_job
-#SBATCH -n 64
-#SBATCH -t 12:00:00
-#SBATCH -p compute
-#SBATCH -o slurm-%j.out
-
-set -euo pipefail
 
 # Activate CFDEM environment (quiet)
 source "$HOME/CFDEM-PFS/cfdem.env" >/dev/null
 
-# Run solver
-cd "$SLURM_SUBMIT_DIR"
-mpirun -np 64 cfdemSolverIB_MT -case "$PWD"
 ```
 
-Submit:
-```bash
-sbatch cfdem_job.slurm
-```
 
 ---
 
