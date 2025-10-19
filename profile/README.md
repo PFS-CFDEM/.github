@@ -38,7 +38,29 @@ gcc (GCC) 8.5.0
 ```
 
 If another GCC is active in your `.bashrc`, comment it out.  
-If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manually.
+If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manually as:
+
+
+> ⚠️ **Optional:** If GCC 8.5.0 is not available on your system, you can build it manually as follows:
+
+> ```bash
+> cd $HOME/CFDEM-PFS/
+> mkdir gcc && cd gcc
+>
+> wget https://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-8.5.0/gcc-8.5.0.tar.gz
+> tar xvzf gcc-8.5.0.tar.gz
+>
+> ## download prerequisites
+> cd gcc-8.5.0
+> ./contrib/download_prerequisites
+>
+> ## configure
+> ./configure --disable-multilib --prefix=$HOME/CFDEM-PFS/gcc/opt --enable-languages=c,c++,fortran
+>
+> ## make & install
+> make -j 12
+> make install
+> ```
 
 ### OpenMPI 3.1.6
 
@@ -103,6 +125,10 @@ Paste the following content (NOTE: it is assumed that the name of the main folde
 # --- MPI used to build/run CFDEM ---
 export PATH="$HOME/CFDEM-PFS/openmpi/opt/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/openmpi/opt/lib:$LD_LIBRARY_PATH"
+
+# --- if GCC 8.5.0 was manually compiled ---
+#export PATH="$HOME/CFDEM-PFS/gcc/opt/bin:$PATH"
+#export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/gcc/opt/lib64:$LD_LIBRARY_PATH"
 
 # --- OpenFOAM settings ---
 export WM_NCOMPPROCS=12
