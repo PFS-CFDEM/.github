@@ -160,9 +160,8 @@ export CFDEM_LPP_DIR="$CFDEM_ROOT/LIGGGHTS/lpp/src"
 # --- CFDEM init  ---
 . "$CFDEM_bashrc"
 
-you will get a question regarding creating a user directory for CFDEM, answer with yes (y)
-
 ```
+you will get a question regarding creating a user directory for CFDEM, answer with yes (y).
 
 Activate the environment:
 ```bash
