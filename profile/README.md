@@ -103,7 +103,7 @@ mpirun (Open MPI) 3.1.6
 cd "$HOME/CFDEM-PFS"
 mkdir CFDEM
 cd CFDEM
-git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC.git
+git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC-6.git
 
 cd "$HOME/CFDEM-PFS"
 mkdir LIGGGHTS
