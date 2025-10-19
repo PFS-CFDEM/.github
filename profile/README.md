@@ -95,7 +95,7 @@ git clone git@github.com:PFS-CFDEM/OpenFOAM.git
 emacs "$HOME/CFDEM-PFS/cfdem.env"
 ```
 
-Paste the following content:
+Paste the following content (NOTE: it is assumed that the name of the main folder is CFDEM-PFS, see LOCDIR below):
 
 ```bash
 # === CFDEM environment file (Option B: no ~/.bashrc changes) ===
