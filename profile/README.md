@@ -1,308 +1,235 @@
-# HSU-PFS-Lab / CFDEMcoupling Setup
+# 🧪 CFDEM® Installation Guide (HSU – Hsuper Cluster, October 2025)
 
-This repository hosts projects related to CFDEM®coupling, a coupled CFD-DEM framework combining OpenFOAM® and LIGGGHTS®.  
+This installation guide was **tested on the Hsuper cluster at Helmut-Schmidt-University (HSU)** in **October 2025**.  
+It installs **CFDEM®coupling** with **OpenFOAM-6**, using:
 
-Below is the **Installation** section as per the CFDEMcoupling 3.8.1 manual with the initial part specific for the HSUper of the Helmut-Schmidt University Hamburg. 
+- **GCC 8.5.0** (default compiler on Hsuper as of October 2025)  
+- **OpenMPI 3.1.6** (recommended — newer versions may compile but can cause runtime issues)  
+- **LIGGGHTS-PUBLIC** and **LPP** from the PFS-CFDEM GitHub organization  
 
----
-
-## Installation
-
-This section describes how to download the CFDEM®project repositories and compile LIGGGHTS® and CFDEM®coupling.  
-
-### Procedure (Short Summary)
-1. Install and load required modules on HSUper (gcc@4.9.1, openmpi@3.1.6, flex)
-2. Install git  
-3. Download CFDEM®project software  
-4. Setup prerequisites  
-5. Setup and compile OpenFOAM®  
-6. Set environment variables and paths  
-7. Compile LIGGGHTS® and CFDEM®coupling  
-8. Additional information  
-9. Run your own cases  
+👉 **Reference manual (highly recommended):**  
+[CFDEM Official Installation Guide](https://www.cfdem.com/media/CFDEM/docu/CFDEMcoupling_Manual.html#installation)
 
 ---
 
-### Detailed Installation Guide
-
-#### Prerequisites: Install Required Modules
-
-The following module versions have been verified to work with CFDEM®. Note that newer versions of GCC and OpenMPI may cause compatibility issues.
+## 🪜 1. Create a working directory
 
 ```bash
-# Load Spack module manager
-module load USER-SPACK/0.18.1
-
-# Install required packages
-spack install openmpi@3.1.6 %gcc@8.5.0
-spack install gcc@4.9.1 %gcc@8.5.0
+cd "$HOME"
+mkdir CFDEM-PFS
+cd CFDEM-PFS
 ```
-
-Load Required Modules:
-
-```bash
-​module load flex
-module load USER-SPACK/0.18.1
-spack load openmpi@3.1.6
-spack load gcc@4.9.1
-```
-
-> **Compatibility Note:** The specified versions (gcc@4.9.1, openmpi@3.1.6) have been thoroughly tested and confirmed to work with CFDEM®. Other version combinations may result in compilation errors.
 
 ---
 
-#### Install git
+## 🧰 2. GCC and OpenMPI
 
-Git is preinstalled on HSUper. However, for completeness, this step is  kept here. Git allows you to update the source easily via `git pull`.  
-On Debian-based systems:
+### GCC
 
-```bash
-sudo apt-get install git-core
-```
-
-On other systems you may use:
+GCC 8.5.0 is currently the standard system compiler on Hsuper.
 
 ```bash
-sudo zypper install git-core
-sudo yum install git
+gcc --version
 ```
 
-> **Note:** If port 9418 is blocked, use `https://` instead of `git://` when cloning repositories.
+Expected:
+```
+gcc (GCC) 8.5.0
+```
+
+If another GCC is active in your `.bashrc`, comment it out.  
+If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manually.
+
+### OpenMPI 3.1.6
+
+Although CFDEM may compile with newer OpenMPI versions, some of them lead to runtime problems.  
+Recommended: **OpenMPI 3.1.6**
+
+```bash
+cd "$HOME/CFDEM-PFS"
+mkdir openmpi
+cd openmpi
+
+wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.bz2
+tar xvjf openmpi-3.1.6.tar.bz2
+cd openmpi-3.1.6
+
+./configure --prefix="$HOME/CFDEM-PFS/openmpi/opt"
+make -j 12 all install
+```
+
+Test:
+```bash
+$HOME/CFDEM-PFS/openmpi/opt/bin/mpirun --version
+```
+
+Expected:
+```
+mpirun (Open MPI) 3.1.6
+```
 
 ---
 
-#### Download CFDEM®project Software
-
-Example commands (assumes `$HOME`):
+## 📦 3. Clone the repositories
 
 ```bash
-cd $HOME
-mkdir CFDEM
-cd CFDEM
+cd "$HOME/CFDEM-PFS"
 git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC.git
 
-cd $HOME
 mkdir LIGGGHTS
 cd LIGGGHTS
 git clone git@github.com:PFS-CFDEM/LIGGGHTS-PUBLIC.git
 git clone git@github.com:PFS-CFDEM/LPP.git lpp
 
-
-cd $HOME
+cd "$HOME/CFDEM-PFS"
 git clone git@github.com:PFS-CFDEM/OpenFOAM.git
 ```
 
-If you do not have git, you may download ZIP archives from GitHub and unzip them.  
-GitHub often appends `-master` to folder names—rename them as:
+---
+
+## 🌱 4. Environment setup (Option B — no ~/.bashrc edits)
 
 ```bash
-cd $HOME/CFDEM
-mv CFDEMcoupling-PUBLIC-master CFDEMcoupling-PUBLIC
-
-cd $HOME/LIGGGHTS
-mv LIGGGHTS-PUBLIC-master LIGGGHTS-PUBLIC
-mv LPP-master lpp
+nano "$HOME/CFDEM-PFS/cfdem.env"
 ```
 
-
-#### Setup Prerequisites
-
-On Ubuntu (16.04+), for example:
+Paste the following content:
 
 ```bash
-sudo apt-get install build-essential flex bison cmake \
-     zlib1g-dev libboost-system-dev libboost-thread-dev \
-     libopenmpi-dev openmpi-bin gnuplot libreadline-dev \
-     libncurses-dev libxt-dev libscotch-dev libptscotch-dev
+# === CFDEM environment file (Option B: no ~/.bashrc changes) ===
+
+# --- MPI used to build/run CFDEM ---
+export PATH="$HOME/CFDEM-PFS/openmpi/opt/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/openmpi/opt/lib:$LD_LIBRARY_PATH"
+
+# --- OpenFOAM settings ---
+export WM_NCOMPPROCS=12
+export WM_MPLIB=SYSTEMMPI
+
+# --- OpenFOAM (quiet normal output; errors still visible) ---
+source "$HOME/CFDEM-PFS/OpenFOAM/OpenFOAM-6/etc/bashrc" >/dev/null
+
+# --- CFDEM paths ---
+export LOCDIR="CFDEM-PFS"
+export CFDEM_VERSION="PUBLIC"
+export CFDEM_PROJECT_DIR="$HOME/$LOCDIR/CFDEMcoupling-PUBLIC-$WM_PROJECT_VERSION"
+export CFDEM_PROJECT_USER_DIR="$HOME/$LOCDIR/$LOGNAME-$CFDEM_VERSION-$WM_PROJECT_VERSION"
+
+export CFDEM_bashrc="$CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/bashrc"
+export CFDEM_LIGGGHTS_SRC_DIR="$HOME/$LOCDIR/LIGGGHTS-PUBLIC/src"
+export CFDEM_LIGGGHTS_MAKEFILE_NAME="auto"
+export CFDEM_LPP_DIR="$HOME/$LOCDIR/LIGGGHTS/lpp/src"
+
+# --- CFDEM init (quiet banner; errors still visible) ---
+. "$CFDEM_bashrc" >/dev/null
 ```
 
-CFDEM also recommends using VTK (for output to VTK format) — minimum version 6.3, recommended 8.0.1:
-
+Activate the environment:
 ```bash
-sudo apt-get install libvtk7-dev
+source "$HOME/CFDEM-PFS/cfdem.env"
 ```
 
-Also, for post-processing, install:
-
+Optional alias in `~/.bashrc`:
 ```bash
-sudo apt-get install python-numpy
+alias cfdemenv='source $HOME/CFDEM-PFS/cfdem.env'
 ```
-
-If you compile VTK yourself, ensure MPI support and X11 libraries are enabled.
 
 ---
 
-#### Setup and Compile OpenFOAM®
-
-Follow standard OpenFOAM compilation instructions, with a few CFDEM-specific settings:
-
-- Ensure `WM_LABEL_SIZE=32` is used (the standard setting).  
-- In your `~/.bashrc`, add:
-
-  ```bash
-  export WM_NCOMPPROCS=12 # you can chose a smaller number if you compiling on a smaller system
-  source $HOME/OpenFOAM/OpenFOAM-5.x/etc/bashrc
-  ```
-
-- Then:
-
-  ```bash
-  source ~/.bashrc
-  cd $WM_PROJECT_DIR
-  ./Allwmake
-  ```
-
-Additional hints are available from the OpenFOAM project.
-
----
-
-#### Set Environment Variables and Paths
-
-It’s common to tag your CFDEMcoupling folder with the OpenFOAM version, e.g.:
+## 🧱 5. Compilation
 
 ```bash
-cd $HOME/CFDEM
-mv CFDEMcoupling-PUBLIC CFDEMcoupling-PUBLIC-$WM_PROJECT_VERSION
-```
-
-In your `~/.bashrc` (or `~/.cshrc`), include:
-
-```bash
-# ================================================================  
-# — source CFDEM environment variables  
-export CFDEM_VERSION=PUBLIC  
-export CFDEM_PROJECT_DIR=$HOME/CFDEM/CFDEMcoupling-$CFDEM_VERSION-$WM_PROJECT_VERSION  
-export CFDEM_PROJECT_USER_DIR=$HOME/CFDEM/$LOGNAME-$CFDEM_VERSION-$WM_PROJECT_VERSION  
-export CFDEM_bashrc=$CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/bashrc  
-export CFDEM_LIGGGHTS_SRC_DIR=$HOME/LIGGGHTS/LIGGGHTS-PUBLIC/src  
-export CFDEM_LIGGGHTS_MAKEFILE_NAME=auto  
-export CFDEM_LPP_DIR=$HOME/LIGGGHTS/lpp/src  
-. $CFDEM_bashrc  
-# ================================================================
-```
-
-You may insert an **EXTENDED** block before `. $CFDEM_bashrc` for further customization.  
-Then load the environment:
-
-```bash
-source ~/.bashrc
-cfdemSysTest
-```
-
-This will set up useful aliases and environment variables (e.g. `cfdemEtc`).
-
----
-
-#### Compile LIGGGHTS® and CFDEM®coupling
-
-In a fresh terminal, run:
-
-```bash
+source "$HOME/CFDEM-PFS/cfdem.env"
 cfdemCompCFDEMall
 ```
 
-This command compiles:
+This compiles:
+- LIGGGHTS® executable & shared library  
+- CFDEM® coupling libraries  
+- CFDEM® solvers & utilities
 
-- LIGGGHTS executable  
-- LIGGGHTS as a shared library  
-- CFDEM coupling libraries  
-- CFDEM solvers & utilities  
-
-If there are build errors, it will stop.  
-Note: if you have previously compiled LIGGGHTS, it needs to have been built as a *shared library* via the `cfdemCompLIG` command.
-
-You can compile subsets of the code with:
-
-```bash
-cfdemCompLIG
-cfdemCompCFDEMsrc
-cfdemCompCFDEMsol
-cfdemCompCFDEMuti
+Logs:
 ```
-
-Build logs are in:
-
-```
-$CFDEM_SRC_DIR/lagrangian/cfdemParticle/etc/log
+$CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/log
 ```
 
 ---
 
-#### Run Your Own Cases
+## 🧪 6. Running cases
 
-Your runnable cases should go into:
-
-```text
+Run directory:
+```
 $CFDEM_PROJECT_USER_DIR/run
 ```
 
-You can copy tutorial cases there and adapt them.  
-Note: changes in the `tutorials/` directory may be lost on updates.
-
-To run all tutorial cases:
-
+Run all tutorials:
 ```bash
 cfdemTestTUT
 ```
 
-Or run each tutorial manually via its `Allrun.sh`.
+Run single tutorial:
+```bash
+cd "$CFDEM_PROJECT_USER_DIR/run/<YourCase>"
+./Allrun.sh
+```
 
-For pure LIGGGHTS cases, use:
-
+Pure LIGGGHTS®:
 ```bash
 cfdemLiggghts inputScriptName
-cfdemLiggghtsPar inputScriptName nOfProcs
+cfdemLiggghtsPar inputScriptName nProcs
 ```
-
-You may also link the LIGGGHTS executable into `/usr/local/bin`.
 
 ---
 
-#### Backwards Compatibility & Version Notes
+## 🧭 7. SLURM job script example
 
-CFDEM®coupling supports a single OpenFOAM version at a time.  
-Supported OpenFOAM and LIGGGHTS versions are listed in:
-
-```
-src/lagrangian/cfdemParticle/cfdTools/versionInfo.H
+```bash
+nano cfdem_job.slurm
 ```
 
-If you wish to try alternative versions, you can edit
+Paste:
+```bash
+#!/bin/bash
+#SBATCH -J cfdem_job
+#SBATCH -n 64
+#SBATCH -t 12:00:00
+#SBATCH -p compute
+#SBATCH -o slurm-%j.out
 
-```
-src/lagrangian/cfdemParticle/etc/OFversion/OFversion.H
+set -euo pipefail
+
+# Activate CFDEM environment (quiet)
+source "$HOME/CFDEM-PFS/cfdem.env" >/dev/null
+
+# Run solver
+cd "$SLURM_SUBMIT_DIR"
+mpirun -np 64 cfdemSolverIB_MT -case "$PWD"
 ```
 
-—but not all functionality may work for non-supported versions.
+Submit:
+```bash
+sbatch cfdem_job.slurm
+```
 
 ---
 
-### Additional Notes
+## 📝 Additional notes
 
-- **VTK compilation:** If you need to build VTK manually, version 8.0.1 is recommended. Enable MPI, X11, and other dependencies; use `ccmake` for configuration.  
-- **Makefile auto in LIGGGHTS:** You can set `AUTOINSTALL_VTK=ON` to download & compile VTK automatically.  
-- **MPI issues:** If compiling on a cluster or with custom MPI, define in your OpenFOAM bashrc:
-
-  ```bash
-  export WM_MPLIB=SYSTEMMPI
-  ```
-
-  You may also set:
-
-  ```bash
-  export MPI_ROOT=<path>
-  export MPI_ARCH_PATH=$MPI_ROOT
-  export MPI_ARCH_FLAGS="-DMPICH_SKIP_MPICXX"
-  export MPI_ARCH_INC="-I$MPI_ARCH_PATH/include"
-  export MPI_ARCH_LIBS='-L$(MPI_ARCH_PATH)/lib -lmpich -lmpichcxx -lmpl -lopa -lrt'
-  ```
-
-- **LIGGGHTS shared library linking:** CFDEM coupling uses a symbolic link from `CFDEM_LIB_DIR` to the compiled LIGGGHTS library. This link is created during the coupling compilation phase.  
-- **Debug builds:** To build in debug mode, set `WM_COMPILE_OPTION=Debug` in your OpenFOAM bashrc and rebuild. Ensure LIGGGHTS is compiled with `-O0 -g` or `-O2 -g` if not using the auto Makefile.
+- ✅ Always `source cfdem.env` before compiling or running CFDEM.  
+- ❌ Don’t mix compiler or MPI versions between build and runtime.  
+- 🧹 Clean rebuild:
+```bash
+cfdemCleanAll
+cfdemCompCFDEMall
+```
+- 🧭 If you see `libmpi` or `GLIBCXX` errors, double-check:
+  - Correct environment file
+  - Matching GCC and MPI versions
 
 ---
 
-## License & Contact
+## 📚 References
 
-CFDEM®coupling is open-source under the **GNU Public License (GPL)**.  
-If you run into issues or have feedback, you may contact the developers or consult the CFDEM forum at [www.cfdem.com](https://www.cfdem.com).  
+- [Official CFDEM® Manual](https://www.cfdem.com/media/CFDEM/docu/CFDEMcoupling_Manual.html)  
+- [OpenFOAM 6](https://openfoam.org/)  
+- [LIGGGHTS®](https://www.cfdem.com/)
