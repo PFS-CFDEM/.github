@@ -193,7 +193,7 @@ source "$HOME/CFDEM-PFS/cfdem.env"
 cd $WM_PROJECT_DIR
 ./Allwmake
 
-cd CFDEM_PROJECT_DIR
+cd $CFDEM_PROJECT_DIR
 cfdemCompCFDEMall
 ```
 
