@@ -74,6 +74,8 @@ mpirun (Open MPI) 3.1.6
 
 ```bash
 cd "$HOME/CFDEM-PFS"
+mkdir CFDEM
+cd CFDEM
 git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC.git
 
 mkdir LIGGGHTS
@@ -87,10 +89,10 @@ git clone git@github.com:PFS-CFDEM/OpenFOAM.git
 
 ---
 
-## 🌱 4. Environment setup (Option B — no ~/.bashrc edits)
+## 🌱 4. Environment setup 
 
 ```bash
-nano "$HOME/CFDEM-PFS/cfdem.env"
+emacs "$HOME/CFDEM-PFS/cfdem.env"
 ```
 
 Paste the following content:
