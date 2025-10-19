@@ -142,12 +142,12 @@ export CFDEM_ROOT="$(cd "$(dirname "$_SELF")" && pwd)"
 export LOCDIR="$(basename "$CFDEM_ROOT")"     # optional, if you still want the name
 
 # --- MPI used to build/run CFDEM ---
-export PATH="$CFDEM_ROOT/openmpi/opt/bin:$PATH"
-export LD_LIBRARY_PATH="$CFDEM_ROOT/openmpi/opt/lib:$LD_LIBRARY_PATH"
+export PATH="$CFDEM_ROOT/openmpi/opt/3.1.6/bin:$PATH"
+export LD_LIBRARY_PATH="$CFDEM_ROOT/openmpi/opt/3.1.6/lib:$LD_LIBRARY_PATH"
 
 # --- if GCC 8.5.0 was manually compiled ---
-#export PATH="$CFDEM_ROOT/gcc/opt/bin:$PATH"
-#export LD_LIBRARY_PATH="$CFDEM_ROOT/gcc/opt/lib64:$LD_LIBRARY_PATH"
+#export PATH="$CFDEM_ROOT/gcc/opt/4.9.0/bin:$PATH"
+#export LD_LIBRARY_PATH="$CFDEM_ROOT/gcc/opt/4.9.0/lib64:$LD_LIBRARY_PATH"
 
 # --- OpenFOAM settings ---
 export WM_NCOMPPROCS=12
