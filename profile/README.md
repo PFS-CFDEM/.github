@@ -187,6 +187,7 @@ alias cfdemenv='source $HOME/CFDEM-PFS/cfdem.env'
 
 ## 🧱 5. Compilation
 
+Activate the cfdem environment. Either:
 ```bash
 source "$HOME/CFDEM-PFS/cfdem.env"
 ```
