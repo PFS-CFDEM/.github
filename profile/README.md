@@ -85,16 +85,6 @@ cd openmpi-3.1.6
 make -j 12 all install
 ```
 
-Test:
-```bash
-$HOME/CFDEM-PFS/openmpi/opt/bin/mpirun --version
-```
-
-Expected:
-```
-mpirun (Open MPI) 3.1.6
-```
-
 ---
 
 ## 📦 3. Clone the repositories
@@ -175,6 +165,16 @@ export CFDEM_LPP_DIR="$CFDEM_ROOT/LIGGGHTS/lpp/src"
 Activate the environment:
 ```bash
 source "$HOME/CFDEM-PFS/cfdem.env"
+```
+
+Test:
+```bash
+mpirun --version
+```
+
+Expected:
+```
+mpirun (Open MPI) 3.1.6
 ```
 
 Optional alias in `~/.bashrc`:
