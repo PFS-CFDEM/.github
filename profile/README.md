@@ -60,9 +60,9 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > ## make & install
 > make -j 12
 > make install
-> ```
+> 
 > After installation, update your environment to compile openmpi with this gcc version
->
+> 
 > export PATH="$HOME/CFDEM-PFS/gcc/opt/bin:$PATH"
 > export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/gcc/opt/lib64:$LD_LIBRARY_PATH"
 ```
