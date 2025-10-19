@@ -126,39 +126,50 @@ git clone git@github.com:PFS-CFDEM/ThirdParty-6.git
 emacs "$HOME/CFDEM-PFS/cfdem.env"
 ```
 
-Paste the following content (NOTE: it is assumed that the name of the main folder is CFDEM-PFS, see LOCDIR below):
+Paste the following content:
 
 ```bash
-# === CFDEM environment file (Option B: no ~/.bashrc changes) ===
+# === CFDEM environment file  ===
+
+# --- Determine CFDEM root from *this file* location ---
+# Works on Linux; resolves symlinks if readlink -f exists.
+if command -v readlink >/dev/null 2>&1; then
+  _SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+else
+  _SELF="${BASH_SOURCE[0]}"
+fi
+export CFDEM_ROOT="$(cd "$(dirname "$_SELF")" && pwd)"
+export LOCDIR="$(basename "$CFDEM_ROOT")"     # optional, if you still want the name
 
 # --- MPI used to build/run CFDEM ---
-export PATH="$HOME/CFDEM-PFS/openmpi/opt/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/openmpi/opt/lib:$LD_LIBRARY_PATH"
+export PATH="$CFDEM_ROOT/openmpi/opt/bin:$PATH"
+export LD_LIBRARY_PATH="$CFDEM_ROOT/openmpi/opt/lib:$LD_LIBRARY_PATH"
 
 # --- if GCC 8.5.0 was manually compiled ---
-#export PATH="$HOME/CFDEM-PFS/gcc/opt/bin:$PATH"
-#export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/gcc/opt/lib64:$LD_LIBRARY_PATH"
+#export PATH="$CFDEM_ROOT/gcc/opt/bin:$PATH"
+#export LD_LIBRARY_PATH="$CFDEM_ROOT/gcc/opt/lib64:$LD_LIBRARY_PATH"
 
 # --- OpenFOAM settings ---
 export WM_NCOMPPROCS=12
 export WM_MPLIB=SYSTEMMPI
 
 # --- OpenFOAM (quiet normal output; errors still visible) ---
-source "$HOME/CFDEM-PFS/OpenFOAM/OpenFOAM-6/etc/bashrc" >/dev/null
+# (Assumes your OpenFOAM tree lives under CFDEM_ROOT/OpenFOAM)
+source "$CFDEM_ROOT/OpenFOAM/OpenFOAM-6/etc/bashrc" >/dev/null
 
-# --- CFDEM paths ---
-export LOCDIR="CFDEM-PFS"
+# --- CFDEM paths (all relative to CFDEM_ROOT) ---
 export CFDEM_VERSION="PUBLIC"
-export CFDEM_PROJECT_DIR="$HOME/$LOCDIR/CFDEMcoupling-PUBLIC-$WM_PROJECT_VERSION"
-export CFDEM_PROJECT_USER_DIR="$HOME/$LOCDIR/$LOGNAME-$CFDEM_VERSION-$WM_PROJECT_VERSION"
+export CFDEM_PROJECT_DIR="$CFDEM_ROOT/CFDEMcoupling-PUBLIC-$WM_PROJECT_VERSION"
+export CFDEM_PROJECT_USER_DIR="$CFDEM_ROOT/$LOGNAME-$CFDEM_VERSION-$WM_PROJECT_VERSION"
 
 export CFDEM_bashrc="$CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/bashrc"
-export CFDEM_LIGGGHTS_SRC_DIR="$HOME/$LOCDIR/LIGGGHTS-PUBLIC/src"
+export CFDEM_LIGGGHTS_SRC_DIR="$CFDEM_ROOT/LIGGGHTS-PUBLIC/src"
 export CFDEM_LIGGGHTS_MAKEFILE_NAME="auto"
-export CFDEM_LPP_DIR="$HOME/$LOCDIR/LIGGGHTS/lpp/src"
+export CFDEM_LPP_DIR="$CFDEM_ROOT/LIGGGHTS/lpp/src"
 
 # --- CFDEM init (quiet banner; errors still visible) ---
 . "$CFDEM_bashrc" >/dev/null
+
 ```
 
 Activate the environment:
