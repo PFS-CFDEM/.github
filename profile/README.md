@@ -157,8 +157,10 @@ export CFDEM_LIGGGHTS_SRC_DIR="$CFDEM_ROOT/LIGGGHTS/LIGGGHTS-PUBLIC/src"
 export CFDEM_LIGGGHTS_MAKEFILE_NAME="auto"
 export CFDEM_LPP_DIR="$CFDEM_ROOT/LIGGGHTS/lpp/src"
 
-# --- CFDEM init (quiet banner; errors still visible) ---
-. "$CFDEM_bashrc" >/dev/null
+# --- CFDEM init  ---
+. "$CFDEM_bashrc"
+
+you will get a question regarding creating a user directory for CFDEM, answer with yes (y)
 
 ```
 
