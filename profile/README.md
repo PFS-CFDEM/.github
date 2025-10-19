@@ -55,7 +55,7 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > ./contrib/download_prerequisites
 >
 > ## configure
-> ./configure --disable-multilib --prefix=$HOME/CFDEM-PFS/gcc/opt --enable-languages=c,c++,fortran
+> ./configure --disable-multilib --prefix=$HOME/CFDEM-PFS/gcc/opt/8.5.0 --enable-languages=c,c++,fortran
 >
 > ## make & install
 > make -j 12
@@ -81,7 +81,7 @@ wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.bz2
 tar xvjf openmpi-3.1.6.tar.bz2
 cd openmpi-3.1.6
 
-./configure --prefix="$HOME/CFDEM-PFS/openmpi/opt"
+./configure --prefix="$HOME/CFDEM-PFS/openmpi/opt/3.1.6"
 make -j 12 all install
 ```
 
