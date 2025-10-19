@@ -65,7 +65,7 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > 
 > export PATH="$HOME/CFDEM-PFS/gcc/opt/bin:$PATH"
 > export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/gcc/opt/lib64:$LD_LIBRARY_PATH"
-```
+>```
 
 ### OpenMPI 3.1.6
 
