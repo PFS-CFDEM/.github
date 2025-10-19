@@ -105,13 +105,17 @@ mkdir CFDEM
 cd CFDEM
 git clone git@github.com:PFS-CFDEM/CFDEMcoupling-PUBLIC.git
 
+cd "$HOME/CFDEM-PFS"
 mkdir LIGGGHTS
 cd LIGGGHTS
 git clone git@github.com:PFS-CFDEM/LIGGGHTS-PUBLIC.git
 git clone git@github.com:PFS-CFDEM/LPP.git lpp
 
 cd "$HOME/CFDEM-PFS"
-git clone git@github.com:PFS-CFDEM/OpenFOAM.git
+mkdir OpenFOAM
+cd OpenFOAM
+git clone git@github.com:PFS-CFDEM/OpenFOAM-6.git
+git clone git@github.com:PFS-CFDEM/ThirdParty-6.git
 ```
 
 ---
