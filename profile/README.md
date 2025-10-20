@@ -271,7 +271,7 @@ DO not forget to source the cfdem environment file in your SLURM job submission 
 
 
 # Activate CFDEM environment (quiet)
-source "$HOME/CFDEM-PFS/cfdem.env" >/dev/null
+source "$HOME/CFDEM-PFS/cfdem.env" 
 
 ```
 
