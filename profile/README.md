@@ -222,10 +222,12 @@ cd $CFDEM_PROJECT_DIR
 cfdemCompCFDEMall
 ```
 
+cfdemCompCFDEMuti
 This compiles:
-- LIGGGHTS® executable & shared library  
-- CFDEM® coupling libraries  
-- CFDEM® solvers & utilities
+- LIGGGHTS® executable & shared library (cfdemCompLIG)  
+- CFDEM® coupling libraries (cfdemCompCFDEMsrc) 
+- CFDEM® solvers (cfdemCompCFDEMsol)
+- CFDEM® utilities (cfdemCompCFDEMuti)
 
 Logs:
 ```
