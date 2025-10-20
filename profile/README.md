@@ -161,12 +161,12 @@ export CFDEM_LPP_DIR="$CFDEM_ROOT/LIGGGHTS/lpp/src"
 . "$CFDEM_bashrc"
 
 ```
-you will get a question regarding creating a user directory for CFDEM, answer with yes (y).
 
 Activate the environment:
 ```bash
 source "$HOME/CFDEM-PFS/cfdem.env"
 ```
+you will get a question regarding creating a user directory for CFDEM, answer with yes (y).
 
 Test:
 ```bash
