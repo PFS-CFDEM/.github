@@ -202,6 +202,21 @@ cd $WM_PROJECT_DIR
 ./Allwmake
 ```
 Then:
+
+```bash
+cd $CFDEM_LIGGGHTS_SRC_DIR/MAKE
+cfdemCompLIG
+```
+You will get an error like "Could not determine suitable appendix of VTK library with VTK_INC..".
+To solve this issue:
+
+```bash
+emacs Makefile.user
+```
+and set  USE_VTK = "OFF" instead of "ON".
+
+Then
+
 ```bash
 cd $CFDEM_PROJECT_DIR
 cfdemCompCFDEMall
@@ -267,7 +282,7 @@ source "$HOME/CFDEM-PFS/cfdem.env" >/dev/null
 - ❌ Don’t mix compiler or MPI versions between build and runtime.  
 - 🧹 Clean rebuild:
 ```bash
-cfdemCleanAll
+cfdemCleanCFDEM
 cfdemCompCFDEMall
 ```
 - 🧭 If you see `libmpi` or `GLIBCXX` errors, double-check:
