@@ -238,17 +238,20 @@ $CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/log
 
 ## 🧪 6. Running cases
 
-#### PFS deagglomeration test cases:
-
+### PFS deagglomeration test cases (by Ali Khalifa):
+```bash
 cd "$HOME/CFDEM-PFS"
 mkdir PFS-testcases
 cd  PFS-testcases
 git clone git@github.com:PFS-CFDEM/PFS_testcases.git
+```
 
 Further explanation in the Readme file: 
 https://github.com/PFS-CFDEM/PFS_testcases/tree/main
 
-#### CFDEM standard test cases:
+
+
+### Standard test cases (by CFDEM developers)
 Run directory:
 ```
 $CFDEM_PROJECT_USER_DIR/run
