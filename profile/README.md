@@ -246,7 +246,7 @@ cd  PFS-testcases
 git clone git@github.com:PFS-CFDEM/PFS_testcases.git
 ```
 
-Further explanation in the Readme file: 
+Further explanations in the Readme file: 
 https://github.com/PFS-CFDEM/PFS_testcases/tree/main
 
 
