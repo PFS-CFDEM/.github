@@ -241,8 +241,6 @@ $CFDEM_PROJECT_DIR/src/lagrangian/cfdemParticle/etc/log
 ### PFS deagglomeration test cases (by Ali Khalifa):
 ```bash
 cd "$HOME/CFDEM-PFS"
-mkdir PFS-testcases
-cd  PFS-testcases
 git clone git@github.com:PFS-CFDEM/PFS_testcases.git
 ```
 
