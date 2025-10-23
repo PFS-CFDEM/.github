@@ -287,7 +287,7 @@ source "$HOME/CFDEM-PFS/cfdem.env"
 
 ```
 
-## 🧪 Post-Processing Environment Setup
+## 🧪 8. Post-Processing Environment Setup
 
 For post-processing simulation results, we use:
 
