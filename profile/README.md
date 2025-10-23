@@ -249,24 +249,7 @@ https://github.com/PFS-CFDEM/PFS_testcases/tree/main
 
 
 
-### Standard test cases (by CFDEM developers)
-Run directory:
-```
-$CFDEM_PROJECT_USER_DIR/run
-```
-
-Run all tutorials:
-```bash
-cfdemTestTUT
-```
-
-Run single tutorial:
-```bash
-cd "$CFDEM_PROJECT_USER_DIR/run/<YourCase>"
-./Allrun.sh
-```
-
-Pure LIGGGHTS®:
+Note: for pure LIGGGHTS® simulations (only DEM):
 ```bash
 cfdemLiggghts inputScriptName
 cfdemLiggghtsPar inputScriptName nProcs
