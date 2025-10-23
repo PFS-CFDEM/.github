@@ -287,6 +287,26 @@ source "$HOME/CFDEM-PFS/cfdem.env"
 
 ```
 
+## 🧪 Post-Processing Environment Setup
+
+For post-processing simulation results, we use:
+
+- 📊 **ParaView** — for visualization  
+- 🧮 **Fortran scripts** — for data extraction and pre-processing  
+- 🐍 **Python (Conda)** — for analysis and automation
+
+To set up **ParaView** and **Miniforge (Conda)** for Python post-processing, please follow the detailed installation guide here:
+
+👉 [Processing Software Setup Instructions](https://github.com/PFS-CFDEM/Processing_software/blob/main/README.md)
+
+These instructions include:
+- Local installation of ParaView (no root privileges required)  
+- Clean Miniforge/Conda environment setup  
+- Creating and activating the `demcfd` Conda environment  
+- Using the environment inside SLURM job scripts
+
+Once the environment is set up, you can run your Python post-processing scripts directly on the cluster or locally.
+
 
 ---
 
