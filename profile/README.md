@@ -310,8 +310,8 @@ The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfde
 ### 🧩 II. Major Improvements to the IB Cloud Routine
 📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/derived/cfdemCloudIB/`  
 
-- ✅ **Gaussian interface field option**  
-  - Added the possibility to compute the interface field based on a *Gaussian distribution*, improving control of local mesh refinement around particles.
+- ✅ **Gaussian Interface field option**  
+  - Added the possibility to compute the Interface field based on a *Gaussian Kernel*, improving control of local mesh refinement around particles. This is especially important if the particle is smaller than the grid spacing of the initial mesh before any Dynamic mesh refinement, since the standard method for calculating the INterface field might fail to find the particle.  
 - 🐞 **Periodic image detection bug fix**  
   - Corrected a long-standing issue preventing proper activation of periodic boundary detection for particles.
 - 🧮 **Particle velocity enforcement fix**  
