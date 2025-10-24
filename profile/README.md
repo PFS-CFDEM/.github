@@ -293,7 +293,7 @@ Once the environment is set up, you can run your Python post-processing scripts 
 
 ---
 
-## 9. What Makes the **PFS Version** of CFDEM Special?
+## 🔸 What Makes the **PFS Version** of CFDEM Special?
 
 The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfdem.com/) framework with several targeted improvements and new capabilities, primarily aimed at enhancing **immersed boundary (IB)** simulations and **turbulent flow–particle interaction studies**.
 
