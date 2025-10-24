@@ -293,6 +293,62 @@ Once the environment is set up, you can run your Python post-processing scripts 
 
 ---
 
+## 9. What Makes the **PFS Version** of CFDEM Special?
+
+The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfdem.com/) framework with several targeted improvements and new capabilities, primarily aimed at enhancing **immersed boundary (IB)** simulations and **turbulent flow–particle interaction studies**.
+
+---
+
+### 🚀 I. Customized Immersed Boundary (IB) Solver for HIT
+- **New solver:** `cfdemSolverIB_HIT`  
+  📂 `CFDEM/CFDEMcoupling-PUBLIC-6/applications/solvers/cfdemSolverIB_HIT/`  
+- **Reference:** M. Bassenne (2016) – method for generating *homogeneous isotropic turbulence (HIT)* via a source term.  
+- **Key feature:** Extends the standard IB solver (`cfdemSolverIB`) with additional forcing capabilities to maintain statistically stationary HIT conditions, making it ideal for particle–turbulence interaction studies.
+
+---
+
+### 🧩 II. Major Improvements to the IB Cloud Routine
+📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/derived/cfdemCloudIB/`  
+
+- ✅ **Gaussian interface field option**  
+  - Added the possibility to compute the interface field based on a *Gaussian distribution*, improving control of local mesh refinement around particles.
+- 🐞 **Periodic image detection bug fix**  
+  - Corrected a long-standing issue preventing proper activation of periodic boundary detection for particles.
+- 🧮 **Particle velocity enforcement fix**  
+  - Resolved a bug related to imposing particle velocities on cells shared between multiple particles, improving physical consistency of the IB forcing.
+
+---
+
+
+### 🛠️ III. Fixes & Enhancements to the Standard IB Void Fraction Model
+📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/subModels/voidFractionModel/IBVoidFraction/`  
+
+- Corrected inconsistencies and improved numerical stability of the default IB void fraction implementation.
+- Ensures more accurate and stable fluid–particle coupling, particularly in dense particle suspensions.
+
+---
+
+### 🧪 IV. New Optional Monte-Carlo Void Fraction Model
+📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/subModels/voidFractionModel/IBMCVoidFraction/`  
+
+- Introduced a **Monte Carlo–based void fraction model** that provides a more flexible and statistically robust estimation of the fluid–particle interaction volume fraction.  
+- Useful for highly resolved IB simulations and cases involving complex particle geometries or dense packings.
+- Might be more time-consuming (more testing is required)
+
+
+---
+
+✅ **Summary of Advantages of PFS-CFDEM:**
+- Enhanced IB solver with built-in HIT forcing.  
+- More accurate and flexible interface field and void fraction computation.  
+- Improved robustness in periodic and multi-particle IB interactions.  
+- Backward-compatible with the original CFDEM workflow.
+
+> 💡 *These developments are part of the PFS research effort to improve fully resolved simulations of particle-laden flows, enabling more accurate and efficient large-scale simulations.*
+
+
+---
+
 ## 📝 Additional notes
 
 - ✅ Always `source cfdem.env` before compiling or running CFDEM.  
