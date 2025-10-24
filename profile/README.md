@@ -311,7 +311,8 @@ The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfde
 📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/derived/cfdemCloudIB/`  
 
 - ✅ **Gaussian Interface field option**  
-  - Added the possibility to compute the Interface field based on a *Gaussian Kernel*, improving control of local mesh refinement around particles. This is especially important if the particle is smaller than the grid spacing of the initial mesh before any Dynamic mesh refinement, since the standard method for calculating the INterface field might fail to find the particle.  
+  - Added the possibility to compute the Interface field based on a *Gaussian Kernel*, improving control of local mesh refinement around particles. This is especially important if the particle is smaller than the grid spacing of the initial mesh before any Dynamic mesh refinement, since the standard method for calculating the Interface field might fail to find the particle.
+  -  **Activation:** This feature can be turned on in the `couplingProperties` file located in the `constant/` directory of the CFD case.
 - 🐞 **Periodic image detection bug fix**  
   - Corrected a long-standing issue preventing proper activation of periodic boundary detection for particles.
 - 🧮 **Particle velocity enforcement fix**  
@@ -331,7 +332,8 @@ The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfde
 ### 🧪 IV. New Optional Monte-Carlo Void Fraction Model
 📂 `CFDEM/CFDEMcoupling-PUBLIC-6/src/lagrangian/cfdemParticle/subModels/voidFractionModel/IBMCVoidFraction/`  
 
-- Introduced a **Monte Carlo–based void fraction model** that provides a more flexible and statistically robust estimation of the fluid–particle interaction volume fraction.  
+- Introduced a **Monte Carlo–based void fraction model** that provides a more flexible and statistically robust estimation of the fluid–particle interaction volume fraction.
+-  **Activation:** This feature can be turned on in the `couplingProperties` file located in the `constant/` directory of the CFD case. 
 - Useful for highly resolved IB simulations and cases involving complex particle geometries or dense packings.
 - Might be more time-consuming (more testing is required)
 
