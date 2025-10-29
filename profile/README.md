@@ -340,11 +340,20 @@ The **PFS-CFDEM** fork builds upon the original [CFDEMcoupling](https://www.cfde
 
 ---
 
+### V. New contact force model including the attractive an-der-Waals froce by Hamaker
+📂 `/CFDEM-PFS/LIGGGHTS/LIGGGHTS-PUBLIC/src/normal_model_hertz_fvdw.h`
+
+- To account for cohesion between particles or particles and walls
+- This model is implemented in LIGGGHTS (DEM solver)
+
+---
+
 ✅ **Summary of Advantages of PFS-CFDEM:**
 - Enhanced IB solver with built-in HIT forcing.  
 - More accurate and flexible interface field and void fraction computation.  
 - Improved robustness in periodic and multi-particle IB interactions.  
 - Backward-compatible with the original CFDEM workflow.
+- New contact force model including VdW cohesion 
 
 > 💡 *These developments are part of the PFS research effort to improve fully resolved simulations of particle-laden flows, enabling more accurate and efficient large-scale simulations.*
 
