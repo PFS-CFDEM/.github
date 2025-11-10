@@ -63,8 +63,8 @@ If GCC 8.5.0 is not standard anymore, install it via USER-SPACK or build manuall
 > 
 > After installation, update your environment to compile openmpi with this gcc version
 > 
-> export PATH="$HOME/CFDEM-PFS/opt/gcc/4.9.0/bin:$PATH"
-> export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/opt/gcc/4.9.0/lib64:$LD_LIBRARY_PATH"
+> export PATH="$HOME/CFDEM-PFS/opt/gcc/8.5.0/bin:$PATH"
+> export LD_LIBRARY_PATH="$HOME/CFDEM-PFS/opt/gcc/8.5.0/lib64:$LD_LIBRARY_PATH"
 >```
 
 ### OpenMPI 3.1.6
@@ -136,8 +136,8 @@ export PATH="$CFDEM_ROOT/opt/openmpi/3.1.6/bin:$PATH"
 export LD_LIBRARY_PATH="$CFDEM_ROOT/opt/openmpi/3.1.6/lib:$LD_LIBRARY_PATH"
 
 # --- if GCC 8.5.0 was manually compiled ---
-#export PATH="$CFDEM_ROOT/opt/gcc/4.9.0/bin:$PATH"
-#export LD_LIBRARY_PATH="$CFDEM_ROOT/opt/gcc/4.9.0/lib64:$LD_LIBRARY_PATH"
+#export PATH="$CFDEM_ROOT/opt/gcc/8.5.0/bin:$PATH"
+#export LD_LIBRARY_PATH="$CFDEM_ROOT/opt/gcc/8.5.0/lib64:$LD_LIBRARY_PATH"
 
 # --- OpenFOAM settings ---
 export WM_NCOMPPROCS=12
