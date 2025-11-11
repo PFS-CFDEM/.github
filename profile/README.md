@@ -207,7 +207,7 @@ Then:
 cd $CFDEM_LIGGGHTS_SRC_DIR/MAKE
 cfdemCompLIG
 ```
-You will get an error like "Could not determine suitable appendix of VTK library with VTK_INC..".
+You might get an error like "Could not determine suitable appendix of VTK library with VTK_INC..".
 To solve this issue:
 
 ```bash
